@@ -1,0 +1,14 @@
+{% extends "coltrane/base_links.html" %}
+
+{% block title %}{{ block.super }} | Links in {{ day|date:"F j, Y" }}{% endblock %}
+
+{% block content %}
+	{% for link in object_list %}
+		<h2><a href="{{ link.url }}">{{ link.title }}</a></h2>
+		<p>Published on {{ link.pub_date|date:"F j, Y" }}</p>
+	{% endfor %}
+{% endblock %}
+
+{% block whatis %}
+	<p>This is a list of links in my blog published {{ day|date:"F j, Y" }}.</p>
+{% endblock %}

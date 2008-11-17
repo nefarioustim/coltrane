@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>My blog {% block title %}{% endblock %}</title>
+		<link rel="stylesheet" href="/yui/reset/reset-min.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="/yui/fonts/fonts-min.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="/sf/core.css" type="text/css" media="screen">
+	</head>
+	<body class="{% block bodyclass %}{% endblock %}">
+		<div id="page">
+			<div id="header">
+				<h1 id="branding">My blog</h1>
+			</div>
+			<div id="content">
+				{% block content %}
+				{% endblock %}
+			</div>
+			<div id="sidebar">
+				<h2>Navigation</h2>
+				<ul>
+					<li id="main-nav-entries">
+						<a href="{% url coltrane_entry_archive_index %}">Entries</a>
+					</li>
+					<li id="main-nav-links">
+						<a href="{% url coltrane_link_archive_index %}">Links</a>
+					</li>
+					<li id="main-nav-categories">
+						<a href="{% url coltrane_category_list %}">Categories</a>
+					</li>
+					<li id="main-nav-tags">
+						<a href="{% url coltrane_tag_list %}">Tags</a>
+					</li>
+				</ul>
+				<h2>What is this?</h2>
+				{% block whatis %}
+				{% endblock %}
+				{% load coltrane_tags %}
+				<h2>Latest entries</h2>
+				<ul>
+					{% get_latest_content coltrane.entry 5 as latest_entries %}
+					{% for entry in latest_entries %}
+						<li>
+							<a href="{{ entry.get_absolute_url }}">{{ entry.title }}</a>,
+							posted {{ entry.pub_date|timesince }} ago.
+						</li>
+					{% endfor %}
+				</ul>
+				<h2>Latest links</h2>
+				<ul>
+					{% get_latest_content coltrane.link 5 as latest_links %}
+					{% for link in latest_links %}
+						<li>
+							<a href="{{ link.get_absolute_url }}">{{ link.title }}</a>,
+							posted {{ link.pub_date|timesince }} ago.
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>

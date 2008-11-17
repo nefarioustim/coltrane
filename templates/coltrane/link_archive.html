@@ -1,0 +1,14 @@
+{% extends "coltrane/base_entries.html" %}
+
+{% block title %}{{ block.super }} | Latest links{% endblock %}
+
+{% block content %}
+	{% for link in latest %}
+		<h2><a href="{{ link.get_absolute_url }}">{{ link.title }}</a></h2>
+		<p>Published on {{ link.pub_date|date:"F j, Y" }}</p>
+	{% endfor %}
+{% endblock %}
+
+{% block whatis %}
+	<p>This is a list of the latest {{ latest.count }} links published in my blog.</p>
+{% endblock %}

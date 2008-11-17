@@ -1,0 +1,26 @@
+{% extends "coltrane/base_categories.html" %}
+
+{% block content %}
+	{% if object_list %}
+		<ul>
+			{% for object in object_list %}
+				<li>
+					<a href="{{ object.get_absolute_url }}"><h2>{{ object.title }}</h2></a>
+					<p>Published on {{ object.pub_date|date:"F j, Y" }}</p>
+					{% if object.excerpt_html %}
+					{{ object.excerpt_html|safe }}
+					{% else %}
+					{{ object.body_html|truncatewords_html:"50"|safe }}
+					{% endif %}
+					<p><a href="{{ object.get_absolute_url }}">Read full entry</a></p>
+				</li>
+			{% endfor %}
+		</ul>
+	{% else %}
+		<p>There are no entries in this category.</p>
+	{% endif %}
+{% endblock %}
+
+{% block whatis %}
+	<p>This is a list of the entries under {{ category.title }} in my blog.</p>
+{% endblock %}

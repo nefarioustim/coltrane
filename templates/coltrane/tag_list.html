@@ -1,0 +1,37 @@
+{% extends "coltrane/base_tags.html" %}
+
+{% block title %}{{ block.super }} | List of tags{% endblock %}
+
+{% block content %}
+	{% load tagging_tags %}
+	{% tags_for_model coltrane.Entry as entry_tag %}
+	<h2>Tags on Entries</h2>
+	{% if entry_tag %}
+		<ul>
+		{% for tag in entry_tag %}
+			<li>
+				<a href="{% url coltrane_tag_entry_detail tag.name %}">{{ tag.name }}</a>
+			</li>
+		{% endfor %}
+		</ul>
+	{% else %}
+		<p>There are no tags on entries.</p>
+	{% endif %}
+	{% tags_for_model coltrane.Link as link_tag %}
+	<h2>Tags on Links</h2>
+	{% if link_tag %}
+		<ul>
+		{% for tag in link_tag %}
+			<li>
+				<a href="{% url coltrane_tag_link_detail tag.name %}">{{ tag.name }}</a>
+			</li>
+		{% endfor %}
+		</ul>
+	{% else %}
+		<p>There are no tags on links.</p>
+	{% endif %}
+{% endblock %}
+
+{% block whatis %}
+	<p>This is a list of the tags applied to links and entries in my blog.</p>
+{% endblock %}

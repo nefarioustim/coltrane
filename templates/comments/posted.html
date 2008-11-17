@@ -1,0 +1,9 @@
+{% extends "coltrane/base.html" %}
+
+{% block title %}Thanks for commenting.{% endblock %}
+
+{% block content %}
+	<p>Your comment was posted successfully; you can
+		<a href="{{ comment.content_object.get_absolute_url }}">see it by returning to the
+			discussion</a>.</p>
+{% endblock %}

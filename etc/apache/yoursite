@@ -1,0 +1,28 @@
+NameVirtualHost 127.0.0.1:80
+
+# dynamic Django site
+<VirtualHost 127.0.0.1:80>
+    # FIXME: add your own email
+    ServerAdmin you@yours.com
+    
+    # FIXME: add your own domain
+    ServerName yourdomain.com
+    
+    # FIXME: add your own live deployment path - this is based on Debian-like
+    WSGIScriptAlias / /var/www/yourdomain.com/etc/apache/wsgi
+    
+    # Possible values include: debug, info, notice, warn, error, crit,
+    # alert, emerg.
+    LogLevel warn
+    
+    # FIXME: fix path to error log
+    ErrorLog /var/log/apache2/yourdomain.error.log
+    
+    # FIXME: fix deployment path
+    <Directory /var/www/yourdomain.com/etc/apache>
+        AllowOverride None
+        Order deny,allow
+        Allow from all
+    </Directory>
+    
+</VirtualHost>

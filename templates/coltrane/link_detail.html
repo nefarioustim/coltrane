@@ -1,0 +1,22 @@
+{% extends "coltrane/base_links.html" %}
+
+{% block title %}{{ block.super }} | {{ object.title }}{% endblock %}
+
+{% block content %}
+	<h2>{{ object.title }}</h2>
+	{{ object.description_html|safe }}
+	<a href="{{ object.url }}">View &#8220;{{ object.title }}&#8221;</a>
+{% endblock %}
+
+{% block whatis %}
+	<p>This is an entry to my blog on {{ object.pub_date|date:"F j, Y" }}.</p>
+	
+	{% if object.tags %}
+		{% load tagging_tags %}
+		{% tags_for_object object as tag_list %}
+		<p>This entry is tagged with
+		{% for tag in tag_list %}<a href="{% url coltrane_tag_entry_detail tag %}">{{ tag }}</a>{% if forloop.last %}{% else %}{% ifequal forloop.revcounter0 1 %} and {% else %}, {% endifequal %}{% endif %}{% endfor %}.</p>	
+	{% else %}
+		<p>This entry doesn't have any tags.</p>
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "coltrane/base_categories.html" %}
+
+{% block content %}
+	<ul>
+	{% for category in object_list %}
+		<li>
+			<a href="{% url coltrane_category_detail category.slug %}">{{ category.title }}</a>
+		</li>
+	{% endfor %}
+	</ul>
+{% endblock %}
+
+{% block whatis %}
+	<p>This is a list of the categories in my blog.</p>
+{% endblock %}

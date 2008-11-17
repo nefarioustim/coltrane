@@ -1,0 +1,64 @@
+body {
+	background: #99c;
+}
+h1 {
+	font-size: 200%;
+	font-weight: bold;
+}
+h2 {
+	font-size: 133%;
+	font-weight: bold;
+}
+h1, h2, p, ul {
+	margin: 10px 0;
+}
+#page {
+	background: #fff;
+	margin: 0 auto;
+	overflow: auto;
+	width: 660px;
+}
+#header,
+#content,
+#sidebar {
+	float: left;
+}
+#header {
+	background: #ccf;
+	padding: 10px;
+	width: 640px;
+}
+#content {
+	padding: 10px;
+	width: 440px;
+}
+	#content li {
+		list-style-type: disc;
+		list-style-position: outside;
+		margin-left: 20px;
+	}
+	#content label {
+		display: block;
+		font-size: 85%;
+		font-style: italic;
+	}
+	#content .comment {
+		border-top: 1px solid #ccc;
+	}
+	#content .comment.last {
+		border-bottom: 1px solid #ccc;
+	}
+	#content .comment .who {
+		font-size: 85%;
+	}
+	#content .comment cite {
+		font-weight: bold;
+	}
+	#content .comment .when {
+		font-style: italic;
+	}
+#sidebar {
+	background: #eef;
+	padding: 10px;
+	width: 180px;
+}
